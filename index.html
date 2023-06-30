@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Find the Square:</p>
+
+<p id="number"></p>
+<input type="text" id="answer" />
+<button onClick="checkAnswer()">Check</button>
+<p id="result"></p>
+
+<script>
+function generateRandomNumber() {
+    return Math.floor(Math.random() * 1000) + 1;
+}
+
+function displayNextNumber() {
+    const number = generateRandomNumber();
+    document.getElementById("number").innerHTML = number;
+    document.getElementById("answer").value = "";
+    document.getElementById("result").innerHTML = "";
+}
+
+function checkAnswer() {
+    const number = parseInt(document.getElementById("number").innerHTML);
+    const answer = parseInt(document.getElementById("answer").value);
+    const square = number * number;
+    
+    if (answer === square) {
+        document.getElementById("result").innerHTML = "Correct!";
+    } else {
+        document.getElementById("result").innerHTML = "Incorrect! The correct answer is " + square;
+    }
+    
+    setTimeout(displayNextNumber, 1000);
+}
+
+displayNextNumber();
+</script>
+
+</body>
+</html>
