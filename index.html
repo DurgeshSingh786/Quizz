@@ -1,15 +1,69 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <style>
+      .container {
+    margin-top: 50px;
+  }
+  .row{
+    margin-bottom: 20px;
+    height: 159px;
+  }
+  </style>
 <body>
 
-<p>Find the Square:</p>
 
-<p id="number"></p>
-<input type="text" id="answer" />
-<button onClick="checkAnswer()">Check</button>
-<p id="result"></p>
 
+    
+
+<div class="container text-center" id="quiz-container">
+  <div class="row">
+    <div class="col">
+      <h4>Find the Square:</h4>
+    
+    
+      <h3><span>(<span id="number"></span>)<sup>2</sup></span></h3><br/>
+    
+    
+      <input type="text" id="answer" autofocus>
+  <button class="btn btn-primary" onclick="checkAnswer()">Check</button>
+        <div id="result" ></div>
+
+        
+        
+    </div>
+    
+  </div>
+  <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-text-bg-success">
+  Total Ques: <span id="count_ques" class="badge text-bg-secondary">4</span>
+</button>
+<button type="button" class="btn btn-text-bg-success">
+  Correct Ans: <span id="count_ans" class="badge text-bg-secondary">4</span>
+</button>
+        </div>
+        
+
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <script>
+    let count_ques=0;
+    let count_ans=0;
 function generateRandomNumber() {
     return Math.floor(Math.random() * 1000) + 1;
 }
@@ -19,17 +73,24 @@ function displayNextNumber() {
     document.getElementById("number").innerHTML = number;
     document.getElementById("answer").value = "";
     document.getElementById("result").innerHTML = "";
+    document.getElementById("count_ans").innerHTML = count_ans;
+    document.getElementById("count_ques").innerHTML = count_ques;
 }
 
 function checkAnswer() {
+    
     const number = parseInt(document.getElementById("number").innerHTML);
     const answer = parseInt(document.getElementById("answer").value);
     const square = number * number;
     
     if (answer === square) {
         document.getElementById("result").innerHTML = "Correct!";
+        count_ans++;
+        count_ques++;
+        
     } else {
         document.getElementById("result").innerHTML = "Incorrect! The correct answer is " + square;
+        count_ques++;
     }
     
     setTimeout(displayNextNumber, 1000);
